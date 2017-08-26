@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {
     ScrollView,
+    Alert,
+    AsyncStorage,
 } from 'react-native';
 import {
-    Alert,
     Button,
     Card,
 } from 'react-native-elements';
@@ -56,7 +57,6 @@ export default class MainPage extends React.Component {
                     <Button
                         icon = {{name: 'visibility-off'}}
                         backgroundColor = '#03A9F4'
-                        buttonStyle = {{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                         onPress={() => this._sendMessage("MONITOROFF")}
                         title='Off' />
                 </Card>
@@ -65,13 +65,11 @@ export default class MainPage extends React.Component {
                     <Button
                         icon={{name: 'power-settings-new'}}
                         backgroundColor='#03A9F4'
-                        buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                         onPress={() => this._confirmThenSend("SHUTDOWN")}
                         title='Shutdown' />
                     <Button
-                        icon={{name: 'refresh'}}
+                        icon={{name: 'autorenew'}}
                         backgroundColor='#03A9F4'
-                        buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                         onPress={() => this._confirmThenSend("REBOOT")}
                         title='Reboot' />
                 </Card>

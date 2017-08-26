@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import {
-    Text,
-    View,
+    Button,
+    ScrollView,
+    Text
 } from 'react-native';
 
 export default class SettingsPage extends React.Component {
     render() {
         return (
-            <Text>Jest Page</Text>
+            <Text> test </Text>
         );
     }
 }

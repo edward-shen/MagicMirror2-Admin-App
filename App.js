@@ -4,9 +4,8 @@ import {
     Text,
     View,
     Platform,
-    Alert,
+    AsyncStorage,
 } from 'react-native';
-import { Button, Card } from 'react-native-elements';
 import { Constants } from "expo";
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
 
@@ -17,18 +16,17 @@ import SettingsPage from "./components/SettingsPage";
 
 
 export default class App extends React.Component {
-  render() {
-    return (
-        
-      <ScrollableTabView style={styles.headerStyle}>
-        <MainPage tabLabel="Home" />
-        <ModulePage tabLabel="Modules" />
-        <SettingsPage tabLabel="Settings" />
-      </ScrollableTabView>
+    render() {
+        return (
+        <ScrollableTabView style={styles.headerStyle}>
+            <MainPage tabLabel="Home" />
+            <ModulePage tabLabel="Modules" />
+            <SettingsPage tabLabel="Settings" />
+        </ScrollableTabView>
       //<View style={styles.container}>
       //</View>
-    );
-  }
+        ); 
+    }
 }
 
 const styles = StyleSheet.create({
