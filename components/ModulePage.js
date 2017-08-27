@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import LoadingContainer from 'react-native-loading-container';
 
-import ListItem from './ListItem';
+import RowItem from './ListItem';
 
 
 const styles = StyleSheet.create({
@@ -87,8 +87,7 @@ export default class ModulePage extends React.Component {
               }
               style = {styles.container}
               dataSource = { this.state.dataSource }
-              renderRow = { data => <ListItem {...data} /> }
-              renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+              renderRow = { data => <RowItem {...data} /> }
             />
           }
         </LoadingContainer>

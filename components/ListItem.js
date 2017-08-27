@@ -4,6 +4,7 @@ import {
   Text,
   TouchableHighlight,
 } from 'react-native';
+import { ListItem } from 'react-native-elements';
 import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
@@ -22,25 +23,21 @@ const styles = StyleSheet.create({
 });
 
 
-export default class ListItem extends React.Component {
+export default class RowItem extends React.Component {
   onPress = () => {
     console.log(this.props.name);
   }
 
   render() {
     return (
-      <TouchableHighlight
-        style = { styles.container }
+      <ListItem
         onPress = { this.onPress }
-      >
-        <Text style = {styles.text}>
-          {`${this.props.name}`}
-        </Text>
-      </TouchableHighlight>
+        title = { this.props.name }
+      />
     );
   }
 }
 
-ListItem.propTypes = {
+RowItem.propTypes = {
   name: PropTypes.string.isRequired,
 };
