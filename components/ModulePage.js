@@ -30,10 +30,6 @@ export default class ModulePage extends React.Component {
     constructor() {
         super();
         
-        this._getModuleDataPromise = this._getModuleDataPromise.bind(this);
-        this._onReadyAsync = this._onReadyAsync.bind(this);
-        this._onRefresh = this._onRefresh.bind(this);
-        
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             dataSource: ds.cloneWithRows([{name: "test"}, {name: "testt"}]),
@@ -42,7 +38,7 @@ export default class ModulePage extends React.Component {
         
     }
     
-    async _getModuleDataPromise() {
+    _getModuleDataPromise = async () => {
         console.log("getting module data!");
         return await fetch("http://192.168.1.133:8080/remote?action=MODULE_DATA")
             .then(resp => {return resp.json()});  
@@ -65,7 +61,7 @@ export default class ModulePage extends React.Component {
         
     }
     
-    async _onReadyAsync( {moduleData: data} ) {
+    _onReadyAsync = async ({moduleData: data}) => {
         console.log("setting module data!");
         let newDataSource = this.state.dataSource.cloneWithRows(data);
         return new Promise((resolve) => {
@@ -74,7 +70,7 @@ export default class ModulePage extends React.Component {
         
     }
     
-    _onRefresh() {
+    _onRefresh = () => {
         this.setState(prevSource => { refreshing: true });
         
         this._getModuleDataPromise()

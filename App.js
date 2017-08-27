@@ -23,8 +23,6 @@ export default class App extends React.Component {
             <ModulePage tabLabel="Modules" />
             <SettingsPage tabLabel="Settings" />
         </ScrollableTabView>
-      //<View style={styles.container}>
-      //</View>
         ); 
     }
 }
