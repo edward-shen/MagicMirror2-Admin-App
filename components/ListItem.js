@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
-  TouchableHighlight,
 } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import PropTypes from 'prop-types';

@@ -2,7 +2,6 @@ import React from 'react';
 import {
   AsyncStorage,
   ListView,
-  View,
   StyleSheet,
   RefreshControl,
 } from 'react-native';
