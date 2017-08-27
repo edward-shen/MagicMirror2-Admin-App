@@ -3,6 +3,7 @@ import {
     StyleSheet,
     Text,
     View,
+    TouchableHighlight,
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -20,12 +21,16 @@ const styles = StyleSheet.create({
     },
 });
 
+
 const ListItem = (props) => (
-    <View style = {styles.container}>
+    <TouchableHighlight
+        style = {styles.container}
+        onPress = {console.log(props.name)}
+    >
         <Text style = {styles.text}>
             {`${props.name}`}
         </Text>
-    </View>
+    </TouchableHighlight>
 );
 
 export default ListItem;
