@@ -6,9 +6,8 @@ import {
   RefreshControl,
 } from 'react-native';
 import LoadingContainer from 'react-native-loading-container';
-
-import RowItem from './ListItem';
-
+import PropTypes from 'prop-types';
+import RowItem from './RowItem';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,6 +22,9 @@ const styles = StyleSheet.create({
 });
 
 export default class ModulePage extends React.Component {
+  static PropTypes = {
+    navigation: PropTypes.object.isRequired,
+  }
   constructor() {
     super();
 
@@ -86,7 +88,7 @@ export default class ModulePage extends React.Component {
               }
               style = {styles.container}
               dataSource = { this.state.dataSource }
-              renderRow = { data => <RowItem {...data} /> }
+              renderRow = { data => <RowItem navigation = {this.props.navigation} {...data} /> }
             />
           }
         </LoadingContainer>

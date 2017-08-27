@@ -1,28 +1,18 @@
-import React from 'react';
 import {
   StyleSheet,
   Platform,
 } from 'react-native';
 import { Constants } from 'expo';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
+import {
+  TabNavigator,
+  StackNavigator,
+} from 'react-navigation';
 
 
 import MainPage from './components/MainPage';
 import ModulePage from './components/ModulePage';
 import SettingsPage from './components/SettingsPage';
-
-
-export default class App extends React.Component {
-  render() {
-    return (
-      <ScrollableTabView style={styles.headerStyle}>
-        <MainPage tabLabel="Home" />
-        <ModulePage tabLabel="Modules" />
-        <SettingsPage tabLabel="Settings" />
-      </ScrollableTabView>
-    );
-  }
-}
+import ModuleSettingsPage from './components/ModuleSettingsPage';
 
 const styles = StyleSheet.create({
   container: {
@@ -32,7 +22,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerStyle: {
-    height: Constants.statusBarHeight + (Platform.OS === 'ios' ? 44 : 56),
-    paddingTop: Platform.OS === 'ios' ? 20 : Constants.statusBarHeight,
+    marginTop: Platform.OS === 'ios' ? 20 : Constants.statusBarHeight,
   },
 });
+
+const MainNavigator = TabNavigator({
+  Home: { screen: MainPage },
+  Modules: { screen: ModulePage },
+  Settings: { screen: SettingsPage },
+});
+
+const App = StackNavigator({
+  Home: { screen: MainNavigator },
+  ModuleSettings: { screen: ModuleSettingsPage },
+}, {
+  navigationOptions: { headerStyle: styles.headerStyle },
+});
+
+export default App;
+
