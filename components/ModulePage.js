@@ -64,11 +64,11 @@ export default class ModulePage extends React.Component {
     }
 
     onRefresh = () => {
-      this.setState(() => { refreshing: true });
+      this.setState({ refreshing: true });
 
       this.getModuleDataPromise()
         .then(resp => this.onReadyAsync(resp))
-        .then(() => { this.setState(() => { false; }); });
+        .then(() => { this.setState({ refreshing: false }); });
     }
 
     render() {

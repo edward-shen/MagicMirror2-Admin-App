@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
-  Text,
-  View,
   Platform,
-  AsyncStorage,
 } from 'react-native';
 import { Constants } from 'expo';
-import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 
 import MainPage from './components/MainPage';
