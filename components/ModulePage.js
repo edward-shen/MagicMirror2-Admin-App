@@ -25,6 +25,7 @@ export default class ModulePage extends React.Component {
   static PropTypes = {
     navigation: PropTypes.object.isRequired,
   }
+
   constructor() {
     super();
 

@@ -7,8 +7,6 @@ import {
   TabNavigator,
   StackNavigator,
 } from 'react-navigation';
-
-
 import MainPage from './components/MainPage';
 import ModulePage from './components/ModulePage';
 import SettingsPage from './components/SettingsPage';

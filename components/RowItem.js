@@ -30,6 +30,7 @@ export default class RowItem extends React.Component {
     // I have no idea what navigation really is, so I'm just gonna assume an Object
     navigation: PropTypes.object.isRequired,
   }
+
   onPress = () => {
     this.props.navigation.navigate('ModuleSettings', this.props);
   }
