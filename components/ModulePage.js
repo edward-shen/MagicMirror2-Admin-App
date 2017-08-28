@@ -31,7 +31,7 @@ export default class ModulePage extends React.Component {
 
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-      dataSource: ds.cloneWithRows([{ name: 'test' }, { name: 'testt' }]),
+      dataSource: ds.cloneWithRows([]),
       refreshing: false,
     };
   }
@@ -39,22 +39,17 @@ export default class ModulePage extends React.Component {
     getModuleDataPromise = async () => {
       console.log('getting module data!');
 
-      try {
-        const address = await AsyncStorage.getItem('MIRROR_IP_ADDRESS');
-        const port = await AsyncStorage.getItem('MIRROR_PORT');
-        if (address !== null) {
-          // Fetch returns a promise, which contains our json data
-          // the json data returned is actually still a promise, so we need to use another .then()
-          // properly parse it
-          return await fetch(`http://${address}:${port ? port !== null : '8080'}/remote?action=MODULE_DATA`).json();
-        }
-        console.log('address is null!');
-      } catch (err) {
-        console.log(err);
+      let address = await AsyncStorage.getItem('MIRROR_IP_ADDRESS');
+      const port = await AsyncStorage.getItem('MIRROR_PORT');
+
+      if (address !== null) {
+        console.log(`address is ${address}`);
+      } else {
+        console.log('address is null! defaulting to localloopback');
+        address = '127.0.0.1'; // Return loopback
       }
 
-      return fetch('http://192.168.1.133:8080/remote?action=MODULE_DATA')
-        .then(resp => resp.json());
+      return fetch(`http://${address}:${port ? port !== null : '8080'}/remote?action=MODULE_DATA`).then(resp => resp.json());
     }
 
     onReadyAsync = async ({ moduleData: data }) => {
@@ -69,8 +64,8 @@ export default class ModulePage extends React.Component {
       this.setState({ refreshing: true });
 
       this.getModuleDataPromise()
-        .then(resp => this.onReadyAsync(resp))
-        .then(() => { this.setState({ refreshing: false }); });
+        .then(resp => this.onReadyAsync(resp), () => this.setState({ refreshing: false }))
+        .then(() => this.setState({ refreshing: false }));
     }
 
     render() {
@@ -81,6 +76,7 @@ export default class ModulePage extends React.Component {
           onReadyAsync = { this.onReadyAsync } >
           {
             <ListView
+              enableEmptySections={true}
               refreshControl = {
                 <RefreshControl
                   refreshing = { this.state.refreshing }
