@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 });
 
 export default class ModulePage extends React.Component {
-  static PropTypes = {
+  static propTypes = {
     navigation: PropTypes.object.isRequired,
   }
 
