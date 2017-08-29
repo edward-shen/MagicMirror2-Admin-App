@@ -35,6 +35,7 @@ export default class ModulePage extends React.Component {
       dataSource: ds,
       refreshing: false,
     };
+
     this.getModuleDataPromise()
       .then(resp => this.onReadyAsync(resp), this.onFailedModuleDataGet)
       .then(() => this.setState({ refreshing: false }));
