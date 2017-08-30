@@ -83,15 +83,13 @@ export default class ModulePage extends React.Component {
     render() {
       const refreshControl =
         <RefreshControl
-          refreshing = {this.state.refreshing }
-          onRefresh = { this.onRefresh }
+          refreshing={this.state.refreshing}
+          onRefresh={this.onRefresh}
         />;
 
       if (this.state.dataSource.getRowCount() === 0) {
         return (
-          <ScrollView
-            refreshControl = { refreshControl }
-          >
+          <ScrollView refreshControl={refreshControl}>
             <Text>
               PULL DOWN TO REFRESH
             </Text>
@@ -102,10 +100,10 @@ export default class ModulePage extends React.Component {
       return (
         <ListView
           enableEmptySections={true}
-          refreshControl = { refreshControl }
-          style = {styles.container}
-          dataSource = { this.state.dataSource }
-          renderRow = { data => <RowItem navigation = {this.props.navigation} {...data} /> }
+          refreshControl={refreshControl}
+          style={styles.container}
+          dataSource={this.state.dataSource}
+          renderRow={data => <RowItem navigation = {this.props.navigation} {...data} />}
         />
       );
     }

@@ -39,22 +39,16 @@ export default class RowItem extends React.Component {
     if (Platform.OS === 'android') {
       return (
         <TouchableNativeFeedback
-          onPress = { this.onPress }
-          background = { TouchableNativeFeedback.SelectableBackground() }>
-          <ListItem
-            title = { this.props.name }
-          />
+          onPress={this.onPress}
+          background={TouchableNativeFeedback.SelectableBackground()}>
+          <ListItem title={this.props.name} />
         </TouchableNativeFeedback>
       );
     }
 
     return (
-      <TouchableHighlight
-        onPress = { this.onPress }
-      >
-        <ListItem
-          title = { this.props.name }
-        />
+      <TouchableHighlight onPress={this.onPress}>
+        <ListItem title={this.props.name} />
       </TouchableHighlight>
     );
   }

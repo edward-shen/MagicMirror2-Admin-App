@@ -48,10 +48,10 @@ export default class MainPage extends React.Component {
           <Button
             icon={{ name: 'visibility' }}
             backgroundColor = '#03A9F4'
-            onPress = {() => this.sendMessage('MONITORON')}
-            title= 'On' />
+            onPress={() => this.sendMessage('MONITORON')}
+            title='On' />
           <Button
-            icon = {{ name: 'visibility-off' }}
+            icon={{ name: 'visibility-off' }}
             backgroundColor = '#03A9F4'
             onPress={() => this.sendMessage('MONITOROFF')}
             title='Off' />

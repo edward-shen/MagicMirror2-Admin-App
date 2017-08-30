@@ -76,11 +76,11 @@ export default class SettingsPage extends React.Component {
       <Card title = 'Mirror Network Settings'>
         <FormLabel>Mirror IPv4 Address</FormLabel>
         <FormInput
-          keyboardType = 'numeric'
-          maxLength = {15}
-          onChangeText = {text => this.handleIPSettings(text.replace(/ /g, ''))}
-          defaultValue = { this.state.ipAddress }
-          placeHolder = "Your mirror's IP address"
+          keyboardType='numeric'
+          maxLength={15}
+          onChangeText={text => this.handleIPSettings(text.replace(/ /g, ''))}
+          defaultValue={this.state.ipAddress}
+          placeHolder="Your mirror's IP address"
         />
         <FormValidationMessage>
           {
@@ -93,13 +93,12 @@ export default class SettingsPage extends React.Component {
 
         <FormLabel>Mirror Access Port</FormLabel>
         <FormInput
-          keyboardType = 'numeric'
-          maxLength = {5}
-          onChangeText = {text => this.handlePortSettings(text)}
-          defaultValue = { this.state.port }
-          placeHolder = "Your mirror's web port. Default: 8080."
+          keyboardType='numeric'
+          maxLength={5}
+          onChangeText={text => this.handlePortSettings(text)}
+          defaultValue={this.state.port}
+          placeHolder="Your mirror's web port. Default: 8080."
         />
-
         <FormValidationMessage>
           {
             // TODO: Optimize

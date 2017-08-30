@@ -11,7 +11,7 @@ Supported features include:
 * Remote restart and shutdown of your Raspberry Pi
 * Restart, refresh, and updating of your MagicMirror platform
 * Module Info
-* [MMM-Pages] support
+* [MMM-Pages][2] support
 
 ## Installation
 

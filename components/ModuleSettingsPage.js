@@ -16,7 +16,7 @@ export default class ModuleSettingsPage extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: `Module Settings: ${navigation.state.params.name}`,
-  })
+  });
 
   toTitleCase = str => str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 
@@ -24,23 +24,23 @@ export default class ModuleSettingsPage extends React.Component {
     const { params } = this.props.navigation.state;
     return (
       <ScrollView>
-        <Card title = 'General properties'>
+        <Card title='General properties'>
           <Text>
-            <Text style = {{ fontWeight: 'bold' }}>Name: </Text>
-            <Text>{ params.name }</Text>
+            <Text style={{ fontWeight: 'bold' }}>Name: </Text>
+            <Text>{params.name}</Text>
           </Text>
           <Text>
-            <Text style = {{ fontWeight: 'bold' }}>Visible: </Text>
-            <Text>{ params.hidden ? 'No' : 'Yes' }</Text>
+            <Text style={{ fontWeight: 'bold' }}>Visible: </Text>
+            <Text>{params.hidden ? 'No' : 'Yes'}</Text>
           </Text>
           <Text>
-            <Text style = {{ fontWeight: 'bold' }}>Identifier: </Text>
-            <Text>{ params.identifier }</Text>
+            <Text style={{ fontWeight: 'bold' }}>Identifier: </Text>
+            <Text>{params.identifier}</Text>
           </Text>
           { 'position' in params &&
             <Text>
-              <Text style = {{ fontWeight: 'bold' }}>Position: </Text>
-              <Text>{ this.toTitleCase(params.position.replace('_', ' ')) }</Text>
+              <Text style={{ fontWeight: 'bold' }}>Position: </Text>
+              <Text>{this.toTitleCase(params.position.replace('_', ' '))}</Text>
             </Text>
           }
         </Card>
