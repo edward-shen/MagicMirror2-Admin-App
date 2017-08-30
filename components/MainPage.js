@@ -13,18 +13,11 @@ export default class MainPage extends React.Component {
   sendMessage = async (msgType, payload = { }) => {
     const ipAddress = await AsyncStorage.getItem('MIRROR_IP_ADDRESS');
     const port = await AsyncStorage.getItem('MIRROR_PORT');
-    let url = `http://${ipAddress}:${port}/remote?`;
+    let url = `http://${ipAddress}:${port}/remote?action=`;
 
     // Special cases
-    switch (msgType) {
-      case 'PAGE_INCREMENT':
-        url += 'action=NOTIFICATION&notification=';
-        break;
-      case 'PAGE_DECREMENT':
-        url += 'action=NOTIFICATION&notification=';
-        break;
-      default:
-        url += 'action=';
+    if (msgType === 'PAGE_INCREMENT' || msgType === 'PAGE_DECREMENT') {
+      url += 'NOTIFICATION&notification=';
     }
 
     fetch(url + msgType, payload);
