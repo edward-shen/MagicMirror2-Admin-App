@@ -70,6 +70,24 @@ export default class MainPage extends React.Component {
             title='Reboot' />
         </Card>
 
+        <Card title='Magic Mirror Settings'>
+          <Button
+            icon={{ name: 'autorenew' }}
+            backgroundColor='#03A9F4'
+            onPress={() => this.confirmThenSend('REFRESH')}
+            title='Refresh' />
+          <Button
+            icon={{ name: 'power-settings-new' }}
+            backgroundColor='#03A9F4'
+            onPress={() => this.confirmThenSend('RESTART')}
+            title='Restart' />
+          <Button
+            icon={{ name: 'power-settings-new' }}
+            backgroundColor='#03A9F4'
+            onPress={() => this.confirmThenSend('UPDATE')}
+            title='Update' />
+        </Card>
+
         <Button
           title="Page Increment"
           onPress={() => this.sendMessage('PAGE_INCREMENT')}
