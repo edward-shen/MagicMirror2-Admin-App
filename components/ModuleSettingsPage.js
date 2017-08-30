@@ -31,7 +31,7 @@ export default class ModuleSettingsPage extends React.Component {
           </Text>
           <Text>
             <Text style = {{ fontWeight: 'bold' }}>Visible: </Text>
-            <Text>{ params.hidden ? 'No' : 'Yes'}</Text>
+            <Text>{ params.hidden ? 'No' : 'Yes' }</Text>
           </Text>
           <Text>
             <Text style = {{ fontWeight: 'bold' }}>Identifier: </Text>

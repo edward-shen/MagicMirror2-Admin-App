@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  ScrollView,
   AsyncStorage,
   View,
 } from 'react-native';
 import {
+  Card,
   FormLabel,
   FormInput,
   FormValidationMessage,
@@ -39,11 +39,7 @@ export default class SettingsPage extends React.Component {
   handleIPSettings = async (text) => {
     if (this.checkIsIPv4(text)) {
       this.setState({ ipAddress: text });
-      try {
-        await AsyncStorage.setItem('MIRROR_IP_ADDRESS', text);
-      } catch (err) {
-        console.log(err);
-      }
+      await AsyncStorage.setItem('MIRROR_IP_ADDRESS', text);
     } else {
       AsyncStorage.setItem('MIRROR_IP_ADDRESS', '127.0.0.1');
     }
@@ -52,11 +48,7 @@ export default class SettingsPage extends React.Component {
   handlePortSettings = async (text) => {
     if (this.isValidPort(text)) {
       this.setState({ port: text });
-      try {
-        await AsyncStorage.setItem('MIRROR_PORT', text);
-      } catch (err) {
-        console.log(err);
-      }
+      await AsyncStorage.setItem('MIRROR_PORT', text);
     } else {
       AsyncStorage.setItem('MIRROR_PORT', '8080');
     }
@@ -81,8 +73,8 @@ export default class SettingsPage extends React.Component {
     if (this.state.isLoading) { return <View />; }
 
     return (
-      <ScrollView>
-        <FormLabel>IPv4 Address</FormLabel>
+      <Card title = 'Mirror Network Settings'>
+        <FormLabel>Mirror IPv4 Address</FormLabel>
         <FormInput
           keyboardType = 'numeric'
           maxLength = {15}
@@ -116,7 +108,7 @@ export default class SettingsPage extends React.Component {
             'this is not a valid port!'
           }
         </FormValidationMessage>
-      </ScrollView>
+      </Card>
     );
   }
 }

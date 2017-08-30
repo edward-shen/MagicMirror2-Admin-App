@@ -1,3 +1,6 @@
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["render"] }] */
+
+import React from 'react';
 import {
   StyleSheet,
   Platform,
@@ -24,18 +27,28 @@ const styles = StyleSheet.create({
   },
 });
 
-const MainNavigator = TabNavigator({
-  Home: { screen: MainPage },
-  Modules: { screen: ModulePage },
-  Settings: { screen: SettingsPage },
-});
+export default class App extends React.Component {
+  render() {
+    const MainNavigator = TabNavigator({
+      Home: { screen: MainPage },
+      Modules: { screen: ModulePage },
+      Settings: { screen: SettingsPage },
+    });
 
-const App = StackNavigator({
-  Home: { screen: MainNavigator },
-  ModuleSettings: { screen: ModuleSettingsPage },
-}, {
-  navigationOptions: { headerStyle: styles.headerStyle },
-});
+    const WrapperNavigator = StackNavigator({
+      Home: { screen: MainNavigator },
+      ModuleSettings: { screen: ModuleSettingsPage },
+    }, {
+      navigationOptions: {
+        headerStyle: styles.headerStyle,
+        title: 'Magic Mirror Admin App',
+      },
+    });
 
-export default App;
-
+    // TODO: ESLint expects 'this' in this function.
+    // Tried to make it static, but react requires a non-static function
+    return (
+      <WrapperNavigator onNavigationStateChange={null} />
+    );
+  }
+}

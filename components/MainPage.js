@@ -2,6 +2,7 @@ import React from 'react';
 import {
   ScrollView,
   Alert,
+  AsyncStorage,
 } from 'react-native';
 import {
   Button,
@@ -9,77 +10,75 @@ import {
 } from 'react-native-elements';
 
 export default class MainPage extends React.Component {
-    rootHTML = 'http://192.168.1.133:8080/remote?';
+  sendMessage = async (msgType, payload = { }) => {
+    const ipAddress = await AsyncStorage.getItem('MIRROR_IP_ADDRESS');
+    const port = await AsyncStorage.getItem('MIRROR_PORT');
+    let url = `http://${ipAddress}:${port}/remote?`;
 
-    sendMessage(msgType, payload = { }) {
-      let url = this.rootHTML;
-
-      // Special cases
-      switch (msgType) {
-        case 'PAGE_INCREMENT':
-          url += 'action=NOTIFICATION&notification=';
-          break;
-        case 'PAGE_DECREMENT':
-          url += 'action=NOTIFICATION&notification=';
-          break;
-        default:
-          url += 'action=';
-      }
-
-      console.log(url + msgType);
-
-      fetch(url + msgType, payload);
+    // Special cases
+    switch (msgType) {
+      case 'PAGE_INCREMENT':
+        url += 'action=NOTIFICATION&notification=';
+        break;
+      case 'PAGE_DECREMENT':
+        url += 'action=NOTIFICATION&notification=';
+        break;
+      default:
+        url += 'action=';
     }
 
-    confirmThenSend(msgType, payload = { }) {
-      Alert.alert(
-        'Warning',
-        `Are you sure you wish to ${msgType.toLowerCase()}?`,
-        [
-          { text: 'Cancel', style: 'cancel' },
-          { text: 'OK', onPress: () => this.sendMessage(msgType, payload) },
-        ],
-      );
-    }
+    fetch(url + msgType, payload);
+  }
 
-    render() {
-      return (
-        <ScrollView>
-          <Card title='Monitor Settings'>
-            <Button
-              icon={{ name: 'visibility' }}
-              backgroundColor = '#03A9F4'
-              onPress = {() => this.sendMessage('MONITORON')}
-              title= 'On' />
-            <Button
-              icon = {{ name: 'visibility-off' }}
-              backgroundColor = '#03A9F4'
-              onPress={() => this.sendMessage('MONITOROFF')}
-              title='Off' />
-          </Card>
+  confirmThenSend(msgType, payload = { }) {
+    Alert.alert(
+      'Warning',
+      `Are you sure you wish to ${msgType.toLowerCase()}?`,
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'OK', onPress: () => this.sendMessage(msgType, payload) },
+      ],
+    );
+  }
 
-          <Card title='Raspberry Pi Settings'>
-            <Button
-              icon={{ name: 'power-settings-new' }}
-              backgroundColor='#03A9F4'
-              onPress={() => this.confirmThenSend('SHUTDOWN')}
-              title='Shutdown' />
-            <Button
-              icon={{ name: 'autorenew' }}
-              backgroundColor='#03A9F4'
-              onPress={() => this.confirmThenSend('REBOOT')}
-              title='Reboot' />
-          </Card>
-
+  render() {
+    return (
+      <ScrollView>
+        <Card title='Monitor Settings'>
           <Button
-            title="Page Increment"
-            onPress={() => this.sendMessage('PAGE_INCREMENT')}
-          />
+            icon={{ name: 'visibility' }}
+            backgroundColor = '#03A9F4'
+            onPress = {() => this.sendMessage('MONITORON')}
+            title= 'On' />
           <Button
-            title="Page Decrement"
-            onPress={() => this.sendMessage('PAGE_DECREMENT')}
-          />
-        </ScrollView>
-      );
-    }
+            icon = {{ name: 'visibility-off' }}
+            backgroundColor = '#03A9F4'
+            onPress={() => this.sendMessage('MONITOROFF')}
+            title='Off' />
+        </Card>
+
+        <Card title='Raspberry Pi Settings'>
+          <Button
+            icon={{ name: 'power-settings-new' }}
+            backgroundColor='#03A9F4'
+            onPress={() => this.confirmThenSend('SHUTDOWN')}
+            title='Shutdown' />
+          <Button
+            icon={{ name: 'autorenew' }}
+            backgroundColor='#03A9F4'
+            onPress={() => this.confirmThenSend('REBOOT')}
+            title='Reboot' />
+        </Card>
+
+        <Button
+          title="Page Increment"
+          onPress={() => this.sendMessage('PAGE_INCREMENT')}
+        />
+        <Button
+          title="Page Decrement"
+          onPress={() => this.sendMessage('PAGE_DECREMENT')}
+        />
+      </ScrollView>
+    );
+  }
 }
