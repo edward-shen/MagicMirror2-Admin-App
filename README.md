@@ -15,7 +15,7 @@ Supported features include:
 
 ## Installation
 
-1. Please install [Jopyth's MMM-Remote-Control] by follow his instructions on his page.
+1. Please install [Jopyth's MMM-Remote-Control][1] by follow his instructions on his page.
 2. Download the app (Link currently unavailable)
 3. Enter your mirror's local IP address (For most cases, this should be in the form of `192.168.1.x`) in the app.
 4. If you changed your default port, please enter that into the app as well.

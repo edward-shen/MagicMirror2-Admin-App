@@ -5,10 +5,11 @@ import {
   StyleSheet,
   RefreshControl,
   ScrollView,
-  Text,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import RowItem from './RowItem';
+import GlobalStyles from './GlobalStyles';
+import HintText from './HintText';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,7 +19,6 @@ const styles = StyleSheet.create({
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: '#8E8E8E',
   },
 });
 
@@ -90,9 +90,11 @@ export default class ModulePage extends React.Component {
       if (this.state.dataSource.getRowCount() === 0) {
         return (
           <ScrollView refreshControl={refreshControl}>
-            <Text>
-              PULL DOWN TO REFRESH
-            </Text>
+            <HintText>
+              Hmm, nothing is showing up...{'\n'}
+              Have you checked your settings?{'\n'}
+              Pull down to refresh!
+            </HintText>
           </ScrollView>
         );
       }

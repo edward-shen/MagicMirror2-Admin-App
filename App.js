@@ -14,15 +14,16 @@ import MainPage from './components/MainPage';
 import ModulePage from './components/ModulePage';
 import SettingsPage from './components/SettingsPage';
 import ModuleSettingsPage from './components/ModuleSettingsPage';
+import GlobalStyles from './components/GlobalStyles';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
   headerStyle: {
+    backgroundColor: GlobalStyles.Colors.primaryColor,
     marginTop: Platform.OS === 'ios' ? 20 : Constants.statusBarHeight,
   },
 });

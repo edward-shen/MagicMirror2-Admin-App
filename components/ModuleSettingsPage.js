@@ -18,7 +18,13 @@ export default class ModuleSettingsPage extends React.Component {
     title: `Module Settings: ${navigation.state.params.name}`,
   });
 
-  toTitleCase = str => str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+  // Changed ugly one liner into more proper function looking
+  // Em says these consts will be inlined when transpiled, so it *shouldn't*` matter.
+  toTitleCase = str => str.replace(/\w\S*/g, (txt) => {
+    const upperLetter = txt.charAt(0).toUpperCase();
+    const restWord = txt.substr(1).toLowerCase();
+    return `${upperLetter}${restWord}`;
+  });
 
   render() {
     const { params } = this.props.navigation.state;

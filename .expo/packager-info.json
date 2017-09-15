@@ -1,8 +1,8 @@
 {
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 9641,
+  "expoServerNgrokUrl": "https://is-a8x.edwardshen.magicmirrorexpo.exp.direct",
+  "packagerNgrokUrl": "https://packager.is-a8x.edwardshen.magicmirrorexpo.exp.direct",
+  "ngrokPid": 9697
 }

@@ -73,7 +73,7 @@ export default class SettingsPage extends React.Component {
     if (this.state.isLoading) { return <View />; }
 
     return (
-      <Card title = 'Mirror Network Settings'>
+      <Card title='Mirror Network Settings'>
         <FormLabel>Mirror IPv4 Address</FormLabel>
         <FormInput
           keyboardType='numeric'

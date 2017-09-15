@@ -10,7 +10,7 @@ import {
 } from 'react-native-elements';
 
 export default class MainPage extends React.Component {
-  sendMessage = async (msgType, payload = { }) => {
+  sendMessage = async (msgType, payload = {}) => {
     const ipAddress = await AsyncStorage.getItem('MIRROR_IP_ADDRESS');
     const port = await AsyncStorage.getItem('MIRROR_PORT');
     let url = `http://${ipAddress}:${port}/remote?action=`;
@@ -23,7 +23,7 @@ export default class MainPage extends React.Component {
     fetch(url + msgType, payload);
   }
 
-  confirmThenSend(msgType, payload = { }) {
+  confirmThenSend(msgType, payload = {}) {
     Alert.alert(
       'Warning',
       `Are you sure you wish to ${msgType.toLowerCase()}?`,
@@ -40,12 +40,12 @@ export default class MainPage extends React.Component {
         <Card title='Monitor Settings'>
           <Button
             icon={{ name: 'visibility' }}
-            backgroundColor = '#03A9F4'
+            backgroundColor='#03A9F4'
             onPress={() => this.sendMessage('MONITORON')}
             title='On' />
           <Button
             icon={{ name: 'visibility-off' }}
-            backgroundColor = '#03A9F4'
+            backgroundColor='#03A9F4'
             onPress={() => this.sendMessage('MONITOROFF')}
             title='Off' />
         </Card>
